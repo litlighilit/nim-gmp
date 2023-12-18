@@ -16,7 +16,7 @@ else:
   const libgmp* = "libgmp.so"
   
 type 
-  mm_gmp_randstate_algdata* {.pure.} = object  {.union.}
+  mm_gmp_randstate_algdata* {.pure, union.} = object
     mp_lc*: pointer
 
   mp_limb_t* = uint
