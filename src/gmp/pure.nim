@@ -1495,10 +1495,6 @@ proc mpz_odd_p*(a2: mpz_t): cint =
   (a2.mp_size != 0).cint and (cast[ptr culong](a2.mp_d)[]).cint
 proc mpz_odd_p*(a2: mpz_srcptr): cint = mpz_odd_p(a2[])
 proc mpz_even_p*(a2: mpz_t | mpz_srcptr): cint = (not mpz_odd_p(a2).bool).cint
-proc `=destroy`*(z: var mm_mpz_struct) =
-  mpz_clear(z)
-proc `=destroy`*(z: var mm_mpq_struct) =
-  mpq_clear(z)
 const 
   GMP_ERROR_NONE* = 0
   GMP_ERROR_UNSUPPORTED_ARGUMENT* = 1
