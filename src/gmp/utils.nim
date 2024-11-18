@@ -94,19 +94,27 @@ proc `<=`*(a,b: mpz_t): bool =
 proc cmp*(a,b: mpz_t): int =
   return mpz_cmp(a,b)  
 
+template cstringOfLen(len: csize_t): cstring =
+  ## remember to free(dealloc) the result
+  var res = cast[cstring](alloc(len+1))
+  res[len] = '\0'
+  res
+
 proc `$`*(a: mpz_t, base: cint = 10): string =
-  result = newString(mpz_sizeinbase(a, base) + 1)
-  return $mpz_get_str(result,base,a)
+  var cstr = cstringOfLen(mpz_sizeinbase(a, base))
+  result = $mpz_get_str(cstr,base,a)
+  dealloc cstr
   
 proc `$`*(a: ptr mpz_t, base: cint = 10): string =
-  result = newString(mpz_sizeinbase(a, base) + 1)
-  return $mpz_get_str(result,base,a)
+  var cstr = cstringOfLen(mpz_sizeinbase(a, base))
+  result = $mpz_get_str(cstr,base,a)
+  dealloc cstr
   
 proc copy*(a: mpz_t): mpz_t =
   ## you must use this function in instead of assignment
   mpz_set(result,a)
   return result
-  
+
 ################################################################################
 # multi-precision floats
 ################################################################################
@@ -199,8 +207,9 @@ proc `$`*(a: mpf_t, base: cint = 10, n_digits: csize_t = 10): string =
   
   var exp: mp_exp_t
   # +1 for possible minus sign
-  var str = newString(n_digits + 1)
+  var str = cstringOfLen(n_digits)
   let coeff = $mpf_get_str(str,exp,base,n_digits,a)
+  dealloc str
   if (exp != 0):
     return coeff & "e" & $exp
   if coeff == "":
