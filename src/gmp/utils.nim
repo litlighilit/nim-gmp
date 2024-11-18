@@ -182,7 +182,7 @@ proc toFloat*(a: var mpf_t): float =
   if result == Inf:
     raise newException(ValueError, "number too large")
 
-proc `$`*(a: mpf_t, base: cint = 10, n_digits = 10): string =
+proc `$`*(a: mpf_t, base: cint = 10, n_digits: csize_t = 10): string =
   var outOfRange = false
   var floatVal: float
   
