@@ -1,7 +1,7 @@
-import gmp
+import gmp/gmpImplWithFinalise
 import math
 
-{.deadCodeElim: on.}
+
 {.push hints: off.}
 {.experimental.}
 
@@ -10,11 +10,8 @@ import math
 ################################################################################
 
 
-proc finalise(a: ref mpz_t) =
-  mpz_clear(a[])
- 
 proc new_mpz*(): ref mpz_t =
-  new(result,finalise)
+  new(result)
   mpz_init(result[])
   
 proc init_mpz*(): mpz_t =
@@ -53,7 +50,7 @@ proc init_mpz*(val: clong): mpz_t =
   mpz_init_set_si(result,val)
   
 proc new_mpz*(val: clong): ref mpz_t =
-  new(result,finalise)
+  new(result)
   mpz_init_set_si(result[],val)
   
 template mpz_p*(a: clong{lit}): mpz_ptr {.deprecated.} =
@@ -63,7 +60,7 @@ template mpz_p*(a: clong{lit}): mpz_ptr {.deprecated.} =
   temp[].addr    
   
 proc new_mpz*(enc: string, base: cint = 10): ref mpz_t =
-  new(result,finalise)
+  new(result)
   if mpz_init_set_str(result[],enc, base) != 0: 
     raise newException(ValueError,enc & " represents an invalid value")
 
@@ -110,17 +107,9 @@ proc copy*(a: mpz_t): mpz_t =
   mpz_set(result,a)
   return result
   
-# careful when copying values!!!
-proc destroy*(a: var mpz_t) {.destructor.} =
-  mpz_clear(a)
-
-
 ################################################################################
 # multi-precision floats
 ################################################################################
-
-proc finalise(a: ref mpf_t) =
-  mpf_clear(a[])
 
 proc init_mpf*(): mpf_t =
   mpf_init(result)
@@ -156,7 +145,7 @@ proc init_mpf*(val: float): mpf_t =
   mpf_init_set_d(result,val)
   
 proc new_mpf*(val: float): ref mpf_t =
-  new(result,finalise)
+  new(result)
   mpf_init_set_d(result[],val)
   
 proc init_mpf*(val: clong): mpf_t =
@@ -230,10 +219,7 @@ proc `<=`*(a,b: mpf_t): bool =
 
 proc cmp*(a,b: mpf_t): int =
   return mpf_cmp(a,b)
-  
-proc destroy*(a: var mpf_t) {.destructor.} =
-  mpf_clear(a)
-  
+
 converter convert*(a: mpz_t): mpf_t =
   result = init_mpf()
   mpf_set_z(result,a)
