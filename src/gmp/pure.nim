@@ -1154,9 +1154,9 @@ proc mpn_gcdext*(a2: var mp_limb_t; a3: var mp_limb_t; a4: ptr mp_size_t;
                  a5: var mp_limb_t; a6: mp_size_t; a7: var mp_limb_t;
                  a8: mp_size_t): mp_size_t {.importc: "__gmpn_gcdext",
     dynlib: libgmp, cdecl.}
-proc mpn_get_str*(a2: ptr cuchar; a3: cint; a4: mp_ptr; a5: mp_size_t): csize_t {.
+proc mpn_get_str*(a2: ptr cchar; a3: cint; a4: mp_ptr; a5: mp_size_t): csize_t {.
     importc: "__gmpn_get_str", dynlib: libgmp, cdecl.}
-proc mpn_get_str*(a2: ptr cuchar; a3: cint; a4: var mp_limb_t; a5: mp_size_t): csize_t {.
+proc mpn_get_str*(a2: ptr cchar; a3: cint; a4: var mp_limb_t; a5: mp_size_t): csize_t {.
     importc: "__gmpn_get_str", dynlib: libgmp, cdecl.}
 proc mpn_hamdist*(a2: mp_srcptr; a3: mp_srcptr; a4: mp_size_t): mp_bitcnt_t {.
     importc: "__gmpn_hamdist", dynlib: libgmp, cdecl.}
@@ -1241,9 +1241,9 @@ proc mpn_scan1*(a2: mp_srcptr; a3: mp_bitcnt_t): mp_bitcnt_t {.
     importc: "__gmpn_scan1", dynlib: libgmp, cdecl.}
 proc mpn_scan1*(a2: var mp_limb_t; a3: mp_bitcnt_t): mp_bitcnt_t {.
     importc: "__gmpn_scan1", dynlib: libgmp, cdecl.}
-proc mpn_set_str*(a2: mp_ptr; a3: ptr cuchar; a4: csize_t; a5: cint): mp_size_t {.
+proc mpn_set_str*(a2: mp_ptr; a3: ptr cchar; a4: csize_t; a5: cint): mp_size_t {.
     importc: "__gmpn_set_str", dynlib: libgmp, cdecl.}
-proc mpn_set_str*(a2: var mp_limb_t; a3: ptr cuchar; a4: csize_t; a5: cint): mp_size_t {.
+proc mpn_set_str*(a2: var mp_limb_t; a3: ptr cchar; a4: csize_t; a5: cint): mp_size_t {.
     importc: "__gmpn_set_str", dynlib: libgmp, cdecl.}
 proc mpn_sizeinbase*(a2: mp_srcptr; a3: mp_size_t; a4: cint): csize_t {.
     importc: "__gmpn_sizeinbase", dynlib: libgmp, cdecl.}

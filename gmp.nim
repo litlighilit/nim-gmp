@@ -674,7 +674,7 @@ proc mpn_gcdext_1*(a2: ptr mp_limb_signed_t; a3: ptr mp_limb_signed_t;
 proc mpn_gcdext*(a2: mp_ptr; a3: mp_ptr; a4: ptr mp_size_t; a5: mp_ptr; 
                  a6: mp_size_t; a7: mp_ptr; a8: mp_size_t): mp_size_t {.
     importc: "mpn_gcdext", header: "<gmp.h>".}
-proc mpn_get_str*(a2: ptr cuchar; a3: cint; a4: mp_ptr; a5: mp_size_t): csize_t {.
+proc mpn_get_str*(a2: ptr cchar; a3: cint; a4: mp_ptr; a5: mp_size_t): csize_t {.
     importc: "mpn_get_str", header: "<gmp.h>".}
 proc mpn_hamdist*(a2: mp_srcptr; a3: mp_srcptr; a4: mp_size_t): mp_bitcnt_t {.
     importc: "mpn_hamdist", header: "<gmp.h>".}
@@ -715,7 +715,7 @@ proc mpn_scan0*(a2: mp_srcptr; a3: mp_bitcnt_t): mp_bitcnt_t {.
     importc: "mpn_scan0", header: "<gmp.h>".}
 proc mpn_scan1*(a2: mp_srcptr; a3: mp_bitcnt_t): mp_bitcnt_t {.
     importc: "mpn_scan1", header: "<gmp.h>".}
-proc mpn_set_str*(a2: mp_ptr; a3: ptr cuchar; a4: csize_t; a5: cint): mp_size_t {.
+proc mpn_set_str*(a2: mp_ptr; a3: ptr cchar; a4: csize_t; a5: cint): mp_size_t {.
     importc: "mpn_set_str", header: "<gmp.h>".}
 proc mpn_sizeinbase*(a2: mp_srcptr; a3: mp_size_t; a4: cint): csize_t {.
     importc: "mpn_sizeinbase", header: "<gmp.h>".}
