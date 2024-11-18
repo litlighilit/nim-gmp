@@ -9,4 +9,4 @@ installExt    = @["nim"]
 skipDirs      = @["examples"]
 # Dependencies
 
-requires "nim >= 0.9.6"
+requires "nim > 0.9.6"  # 0.9.6 is the last version of nimrod
