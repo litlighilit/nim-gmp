@@ -10,8 +10,7 @@
 {.passl: "-lgmp".}
 
 type 
-  INNER_C_UNION_5532179898798000430* {.importc: "no_name", header: "<gmp.h>".} = object  {.
-      union.}
+  INNER_C_UNION_5532179898798000430* {.importc: "no_name", header: "<gmp.h>", union.} = object
     mp_lc* {.importc: "_mp_lc".}: pointer
   
   # should check limb sizes / import them directly?
